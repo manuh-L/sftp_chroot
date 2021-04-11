@@ -25,7 +25,7 @@
         groups: "{{item.groups}}"
         shell:  "{{item.shell}}"
         comment: "{{item.comment}}"
-#        append: yes
+        append: yes
       with_items: "{{ sftp_users }}"
 
     - name: Create a directory for sftp users if it does not exist
