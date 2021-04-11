@@ -1,0 +1,36 @@
+---
+#defautl file for input SFTP
+
+
+
+sftp_users:
+- {name: sftp-no_mediation, groups: local-sftp, comment: "test sem mediation", shell: /sbin/nologin}
+# - {name: sftp-manuel, groups: sftp-shares-with-mediation, comment: "user dandy criado para SFTP", shell: /sbin/nologin, folder1: incoming, folder2: outgoing, sftp_owner: sftp-mediation}
+# - {name: sft-ent-test, groups: sftp-shares-with-mediation, comment: 'user brown criado para SFTP com email server', shell: /sbin/nologin, folder1: incoming, folder2: outgoing, sftp_owner: sftp-mediation}
+# - {name: sftp-its-test, groups: sftp-shares-with-mediation, comment: "user test do it system para SFTP", shell: /sbin/nologin}
+# - {name: sftp-tes, groups: sftp-shares-with-mediation, comment: "test", shell: /sbin/nologin}
+
+sftp_folders:
+# - {name: incoming, owner: sftp-mediation, group: sftp-manuel}
+# - {name: outgoing, owner: sftp-mediation, group: sftp-manuel}
+# - {name: incoming, owner: sftp-mediation, group: sftp-ent-test}
+# - {name: outgoing, owner: sftp-mediation, group: sftp-ent-test}
+# - {name: incoming, owner: sftp-mediation, group: sftp-its-test}
+# - {name: outgoing, owner: sftp-mediation, group: sftp-its-test}
+# - {name: test1, owner: sftp-mediation, group: sftp-tes}
+# - {name: test2, owner: sftp-mediation, group: sftp-tes}
+- {name: sem_mediation_folder, owner: root, group: sftp-no_mediation }
+- {name: sem_mediation_pasta, owner: root, group: sftp-no_mediation }
+
+#sftp_chroot_directory: /sftp_home/group_shares/sftp-mediation
+sftp_chroot_directory: /sftp_home/group_shares
+
+#sftp_shell: /sbin/nologin
+
+#sftp_group_owner: sftp-mediation
+#sftp_extra_config: ""
+
+#home_directory: /home/user1
+
+
+#sftp_chroot_group: "{{ sftp_group_name }}"
