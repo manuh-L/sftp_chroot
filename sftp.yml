@@ -1,0 +1,47 @@
+---
+
+- name: SFTP
+  hosts: test
+  vars_files:
+    - test.yml
+  become: true
+
+ 
+  tasks:
+    - name: Create sftp users
+      user:
+        name: "{{item.name}}"
+        groups: "{{item.groups}}"
+        shell:  "{{item.shell}}"
+        comment: "{{item.comment}}"
+#        append: yes
+      with_items: "{{ sftp_users }}"
+
+    - name: Create a directory for sftp users if it does not exist
+      file:
+        path: "{{sftp_chroot_directory}}/{{ item.name }}"
+        state: directory
+        mode: '0755'
+        owner: root
+        group: root
+      with_items: "{{ sftp_users}}"
+
+    - name: Creating SFTP dir for Jail 
+      file:
+        path: "{{sftp_chroot_directory}}/{{ item.group }}/{{ item.name }}"
+        state: directory
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+        mode: u=rwx,g+rwxs
+      with_items:
+        - "{{ sftp_folders }}"
+
+#    - name: home dir for sftp users
+#      file:
+#        path: /sftp_home/group_shares/sftp-mediation/{{ item.name }}/{{ item.folder2 }}
+#        state: directory
+#        owner: "{{ item.sftp_owner  }}"
+#        group: "{{ item.name }}"
+#        mode: u=rwx,g+rwxs,o-rwx
+#      with_items:
+#        - "{{ sftp_users }}"
