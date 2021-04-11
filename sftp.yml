@@ -8,6 +8,16 @@
 
  
   tasks:
+  
+    - name: Ensure groups exists
+      ansible.builtin.group:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - local-sftp
+        - sftp-no_mediation
+        - sftp-shares-with-mediation
+  
     - name: Create sftp users
       user:
         name: "{{item.name}}"
