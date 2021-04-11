@@ -3,7 +3,7 @@
 - name: SFTP
   hosts: test
   vars_files:
-    - test.yml
+    - inputs.yml
   become: true
 
  
