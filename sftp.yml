@@ -31,6 +31,12 @@
         append: yes
       with_items: "{{ sftp_users }}"
 
+    - name: Set 365 maximum expiration date for password
+      user:
+        name: "{{item.name}}"
+        password_expire_max: 365
+      with_items: "{{ sftp_users }}"
+
     - name: Create a directory for sftp users if it does not exist
       file:
         path: "{{sftp_chroot_directory}}/{{ item.name }}"
