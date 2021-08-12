@@ -25,6 +25,9 @@
         groups: "{{item.groups}}"
         shell:  "{{item.shell}}"
         comment: "{{item.comment}}"
+        password_expire_max: 365
+        password: "Password1"
+        update_password: on_create
         append: yes
       with_items: "{{ sftp_users }}"
 
